@@ -1,8 +1,11 @@
-import { CheckCheck, Clock3 } from 'lucide-react';
-import { notificationItems } from '../data/demo';
+import { useMemo } from 'react';
+import { CheckCheck, Clock3, BellRing } from 'lucide-react';
 import { Card } from '../components/ui/Card';
+import { notificationItems } from '../data/demo';
 
 export function NotificationsPage() {
+  const items = useMemo(() => notificationItems, []);
+
   return (
     <div>
       <div className="mb-5 flex items-center justify-between">
@@ -10,10 +13,14 @@ export function NotificationsPage() {
           <h2 className="text-lg font-bold text-slate-800">Notifications internes</h2>
           <p className="text-sm text-slate-500">Alertes sur missions, rapports et échéances.</p>
         </div>
+        <div className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700">
+          <BellRing size={16} />
+          {items.filter((item) => !item.read).length} non lues
+        </div>
       </div>
 
       <div className="space-y-4">
-        {notificationItems.map((item) => (
+        {items.map((item) => (
           <Card key={item.id} className={item.read ? 'opacity-80' : ''}>
             <div className="flex items-start justify-between gap-4">
               <div>
