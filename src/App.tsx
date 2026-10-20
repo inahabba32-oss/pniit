@@ -10,6 +10,8 @@ import { ReportsPage } from './pages/ReportsPage';
 import { FindingsPage } from './pages/FindingsPage';
 import { NotificationsPage } from './pages/NotificationsPage';
 import { InspectionDetailPage } from './pages/InspectionDetailPage';
+import { InspectionFormPage } from './pages/InspectionFormPage';
+import { CompanyDetailPage } from './pages/CompanyDetailPage';
 import { NotFoundPage } from './pages/NotFoundPage';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -34,7 +36,9 @@ export default function App() {
       >
         <Route index element={<DashboardPage />} />
         <Route path="entreprises" element={<CompaniesPage />} />
+        <Route path="entreprises/:id" element={<CompanyDetailPage />} />
         <Route path="missions" element={<InspectionsPage />} />
+        <Route path="missions/nouvelle" element={<InspectionFormPage />} />
         <Route path="mission/:id" element={<InspectionDetailPage />} />
         <Route path="constats" element={<FindingsPage />} />
         <Route path="plaintes" element={<ComplaintsPage />} />

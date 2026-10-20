@@ -1,22 +1,22 @@
 import { CalendarDays, PlusCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { Badge } from '../components/ui/Badge';
 import { Card } from '../components/ui/Card';
-import { SectionHeader } from '../components/ui/SectionHeader';
 import { inspections } from '../data/demo';
 
 export function InspectionsPage() {
   return (
     <div className="space-y-6">
-      <SectionHeader
-        title="Planification des inspections"
-        subtitle="Calendrier, missions et affectations"
-        action={
-          <button className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700">
-            <PlusCircle size={16} />
-            Nouvelle mission
-          </button>
-        }
-      />
+      <div className="flex items-center justify-between gap-4">
+        <div>
+          <h2 className="text-lg font-bold text-slate-800">Planification des inspections</h2>
+          <p className="text-sm text-slate-500">Calendrier, missions et affectations.</p>
+        </div>
+        <Link to="/missions/nouvelle" className="inline-flex items-center gap-2 rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700">
+          <PlusCircle size={16} />
+          Nouvelle mission
+        </Link>
+      </div>
 
       <div className="grid gap-5 xl:grid-cols-[1.4fr_0.6fr]">
         <Card>
@@ -63,7 +63,9 @@ export function InspectionsPage() {
             <tbody>
               {inspections.map((inspection) => (
                 <tr key={inspection.id} className="border-t border-slate-200">
-                  <td className="px-4 py-3 font-semibold text-slate-800">{inspection.id}</td>
+                  <td className="px-4 py-3 font-semibold text-slate-800">
+                    <Link to={`/mission/${inspection.id}`} className="text-blue-700 hover:underline">{inspection.id}</Link>
+                  </td>
                   <td className="px-4 py-3">{inspection.company}</td>
                   <td className="px-4 py-3">{inspection.inspector}</td>
                   <td className="px-4 py-3">{inspection.type}</td>
